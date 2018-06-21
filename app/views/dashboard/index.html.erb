@@ -1,1 +1,5 @@
-<p>DASHBOARD</p>
+<h2>All invoices</h2>
+<% @invoices.each do |invoice| %>
+  <%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %>
+<% end %>
+<%= link_to "New Invoice", new_invoice_path %>
