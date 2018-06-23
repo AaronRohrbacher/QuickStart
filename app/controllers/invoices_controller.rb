@@ -4,6 +4,9 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    if current_user.companies.length == 0
+      redirect_to dashboard_path
+    end
     @user = current_user
     @invoice = Invoice.new
     @companies = current_user.companies.all

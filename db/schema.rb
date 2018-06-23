@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
     t.string "name"
     t.string "address_1"
     t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
     t.string "phone_1"
     t.string "phone_2"
   end

@@ -1,3 +1,7 @@
-<% @invoices.each do |invoice| %>
-  <p><%= invoice.company.name %></p>
-<% end %>
+<h3>Bill To:</h3>
+<h4><%= @invoice.company.name %></h4>
+<p><%= @invoice.company.address_1 %></p>
+<p><%= @invoice.company.address_2 %></p>
+<p><%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %></p>
+<p><%= @invoice.company.phone_1 %></p>
+<p><%= @invoice.company.phone_2 %></p>
