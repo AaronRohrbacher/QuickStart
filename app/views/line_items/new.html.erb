@@ -1,0 +1,18 @@
+<% if @invoice.line_items.any? %>
+  <h3>Line Items for Invoice no. <%= @invoice.id %></h3>
+  <% @invoice.line_items.each do |item| %>
+    <p><%= "#{item.description} #{item.price} #{item.quantity} #{item.price * item.quantity}" %></p>
+  <% end %>
+<% end %>
+<%= form_for [@invoice, @line_item] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price, class: :text_field, step: :any %>
+
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, class: :text_field, step: :any %>
+
+  <%= f.submit "Add Line Item" %>
+<% end %>

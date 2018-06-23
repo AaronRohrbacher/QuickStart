@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "home#index"
   get 'dashboard', :to => 'dashboard#index'
-  resources :invoices
+  devise_for :users
+
+  resources :invoices do
+    resources :line_items
+  end
 end

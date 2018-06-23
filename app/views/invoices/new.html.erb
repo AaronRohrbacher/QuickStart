@@ -1,7 +1,5 @@
-<%= form_for @invoice do |f| %>
+<%= form_for [@invoice] do |f| %>
   <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
   <%= f.select :company_id, options %>
-
-  <%= f.submit "Create Invoice" %>
-
+  <%= f.submit "Begin Invoice" %>
 <% end %>

@@ -4,12 +4,18 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @invoice = Invoice.new
     @companies = current_user.companies.all
   end
 
   def create
-    @invoice = current_user.invoices.create!(invoice_params)
+    @invoice = current_user.invoices.create(invoice_params)
+    redirect_to new_invoice_line_item_path(@invoice)
+  end
+
+  def edit
+    @invoice = Invoice.find(params[:id])
   end
 
   private
