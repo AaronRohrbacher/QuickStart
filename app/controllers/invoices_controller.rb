@@ -6,6 +6,7 @@ class InvoicesController < ApplicationController
   def new
     if current_user.companies.length == 0
       redirect_to dashboard_path
+      flash[:notice] = "You have no companies to invoice. Please add a company."
     end
     @user = current_user
     @invoice = Invoice.new
