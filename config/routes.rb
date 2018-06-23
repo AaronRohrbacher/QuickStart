@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :invoices do
     resources :line_items
   end
+  resources :companies
 end

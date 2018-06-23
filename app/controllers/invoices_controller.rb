@@ -8,7 +8,7 @@ class InvoicesController < ApplicationController
       redirect_to dashboard_path
       flash[:notice] = "You have no companies to invoice. Please add a company."
     end
-    @user = current_user
+    binding.pry
     @invoice = Invoice.new
     @companies = current_user.companies.all
   end
