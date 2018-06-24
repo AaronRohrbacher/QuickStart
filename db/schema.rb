@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
   create_table "invoices", force: :cascade do |t|
     t.integer "user_id"
     t.integer "company_id"
-    t.boolean "paid", default: false
+    t.string "invoice_number"
     t.date "due_date"
+    t.boolean "paid", default: false
   end
 
   create_table "line_items", force: :cascade do |t|

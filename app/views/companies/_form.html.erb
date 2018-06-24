@@ -1,0 +1,24 @@
+<%= form_for @company, class: "form-group" do |f| %>
+  <%=f.label :name%>
+  <%=f.text_field :name, class: "form-control" %>
+  <%=f.label :address_1%>
+  <%=f.text_field :address_1, class: "form-control" %>
+  <%=f.label :address_2 %>
+  <%=f.text_field :address_2, class: "form-control" %>
+  <%=f.label :city %>
+  <%=f.text_field :city, class: "form-control" %>
+  <%=f.label :state %>
+  <%=f.text_field :state, class: "form-control" %>
+  <%=f.label :zip %>
+  <%=f.text_field :zip, class: "form-control" %>
+  <%=f.label :phone_1%>
+  <%=f.text_field :phone_1, class: "form-control" %>
+  <%=f.label :phone_2%>
+  <%=f.text_field :phone_2, class: "form-control" %>
+  <% if params[:id] %>
+    <% form_type = "Edit" %>
+  <% else %>
+    <% form_type = "Add" %>
+  <% end %>
+  <%=f.submit "#{form_type} Company", class: 'btn btn-primary' %>
+<% end %>

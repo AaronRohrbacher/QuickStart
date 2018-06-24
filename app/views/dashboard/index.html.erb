@@ -24,9 +24,13 @@
         Invoices
       </div>
       <div class="card-body">
-        <p class="card-text">Click on an invoice to view it:</p>
+        <% if current_user.invoices.length == 0 %>
+          <p class="card-text">You have no invoices.</p>
+        <% else %>
+          <p class="card-text">Click on an invoice to view it:</p>
         <% @invoices.each do |invoice| %>
           <p><%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %></p>
+        <% end %>
         <% end %>
         <%= paginate @invoices, param_name: 'invoice_page' %>
         <%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>
