@@ -2,4 +2,6 @@
   <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
   <%= f.select :company_id, options %>
   <%= f.submit "Begin Invoice" %>
+
+  <%= f.date_field :due_date %>
 <% end %>

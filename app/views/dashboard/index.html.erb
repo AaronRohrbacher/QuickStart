@@ -2,10 +2,28 @@
   <div class = "col-md-4">
     <div class="card">
       <div class="card-header">
+        Companies
+      </div>
+      <div class="card-body">
+        <% if current_user.companies.length == 0 %>
+          <p class="card-text">You don't have any companies yet! You cannot create invoices until you've added at least one company.</p>
+        <% else %>
+          <p class="card-text">Click on a company to edit it:</p>
+          <% @companies.each do |company| %>
+            <p><%= link_to "#{company.name}", edit_company_path(company) %></p>
+          <% end %>
+        <% end %>
+        <%= paginate @companies, param_name: 'company_page' %>
+        <%= link_to 'New Company', new_company_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <div class = "col-md-4">
+    <div class="card">
+      <div class="card-header">
         Invoices
       </div>
       <div class="card-body">
-        <h5 class="card-title">Your Invoices</h5>
         <p class="card-text">Click on an invoice to view it:</p>
         <% @invoices.each do |invoice| %>
           <p><%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %></p>
@@ -18,20 +36,38 @@
   <div class = "col-md-4">
     <div class="card">
       <div class="card-header">
-        Companies
+        Unpaid Invoices
       </div>
       <div class="card-body">
-        <h5 class="card-title">Your Companies</h5>
-        <% if current_user.companies.length == 0 %>
-          <p class="card-text">You don't have any companies yet! You cannot create invoices until you've added at least one company.</p>
+        <% if @unpaid_invoices.length == 0 %>
+          <p class="card-text">You have no unpaid invoices.</p>
         <% else %>
-          <p class="card-text">Click on a company to edit it:</p>
-          <% @companies.each do |company| %>
-            <p><%= link_to "#{company.name}", edit_company_path(company) %></p>
+          <p class="card-text">Click on an invoice to view it:</p>
+          <% @unpaid_invoices.each do |invoice| %>
+            <p><%= link_to "#{invoice.company.name}", invoice_path(invoice) %></p>
           <% end %>
         <% end %>
-        <%= paginate @companies, param_name: 'company_page' %>
-        <%= link_to 'New Company', new_company_path, class: "btn btn-primary" %>
+        <%= paginate @unpaid_invoices, param_name: 'unpaid_invoice_page' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Overdue Invoices
+      </div>
+      <div class="card-body">
+        <% if @overdue_invoices.length == 0 %>
+          <p class="card-text">You have no overdue invoices.</p>
+        <% else %>
+          <p class="card-text">Click on an invoice to view it:</p>
+          <% @overdue_invoices.each do |invoice| %>
+            <p><%= link_to "#{invoice.company.name}", invoice_path(invoice) %></p>
+          <% end %>
+        <% end %>
+        <%= paginate @overdue_invoices, param_name: 'overdue_invoice_page' %>
       </div>
     </div>
   </div>
