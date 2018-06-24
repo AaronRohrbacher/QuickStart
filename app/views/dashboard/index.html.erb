@@ -1,5 +1,36 @@
-<h2>All invoices</h2>
-<% @invoices.each do |invoice| %>
-  <%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %>
-<% end %>
-<%= link_to "New Invoice", new_invoice_path %>
+<div class = "row">
+  <div class = "col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Invoices
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Your Invoices</h5>
+        <p class="card-text">Click on an invoice to view it:</p>
+        <% @invoices.each do |invoice| %>
+          <p><%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %></p>
+        <% end %>
+        <%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <div class = "col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Companies
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Your Companies</h5>
+        <% if current_user.companies.length == 0 %>
+          <p class="card-text">You don't have any companies yet! You cannot create invoices until you've added at least one company.</p>
+        <% else %>
+          <p class="card-text">Click on a company to edit it:</p>
+          <% current_user.companies.each do |company| %>
+            <p><%= link_to "#{company.name}", edit_company_path(company) %></p>
+          <% end %>
+        <% end %>
+        <%= link_to 'New Company', new_company_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
