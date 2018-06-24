@@ -5,15 +5,20 @@
   <% end %>
 <% end %>
 <%= form_for [@invoice, @line_item] do |f| %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+<div class = 'input-group input-group-sm mb-3'>
+  <div class = 'input-group-prepend input-group-sm'>
+    <span class = 'input-group-text'>Description</span><%= f.text_field :description, class: 'form-control' %>
+  </div>
 
-  <%= f.label :price %>
-  <%= f.number_field :price, class: :text_field, step: :any %>
+  <div class = 'input-group-prepend input-group-sm'>
+    <span class = 'input-group-text'>Price $</span><%=f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), class: 'form-control' %>
+  </div>
 
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity, class: :text_field, step: :any %>
-
-  <%= f.submit "Add Line Item" %>
+  <div class = 'input-group-prepend input-group-sm'>
+    <span class = 'input-group-text'>Quantity</span><%= f.number_field :quantity, class: :text_field, step: :any, class: 'form-control' %>
+  </div>
+  <%= f.submit "Add Line Item", class: 'btn btn-primary btn-sm' %>
+  </div>
 <% end %>
-<%= link_to "View Invoice Preview", invoice_path(@invoice), class: 'btn btn-success' %>
+
+<%= link_to "View Invoice Preview", invoice_path(@invoice), class: 'btn btn-primary' %>

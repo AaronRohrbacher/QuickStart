@@ -1,7 +1,10 @@
-<%= form_for [@invoice] do |f| %>
+<%= form_for [@invoice], class: 'form-group' do |f| %>
   <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
-  <%= f.select :company_id, options %>
-  <%= f.submit "Begin Invoice" %>
+  <%= f.label :company_id %>
+  <%= f.select :company_id, options, {}, class: 'form-control' %>
+  <%= f.label :due_date %>
+  <%= f.date_field :due_date, class: 'form-control' %>
+  <%= f.submit "Begin Invoice", class: 'btn btn-primary' %>
 
-  <%= f.date_field :due_date %>
+
 <% end %>
