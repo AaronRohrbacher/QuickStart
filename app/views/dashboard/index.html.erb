@@ -10,6 +10,7 @@
         <% @invoices.each do |invoice| %>
           <p><%= link_to "#{invoice.id} #{invoice.company.name}", invoice_path(invoice) %></p>
         <% end %>
+        <%= paginate @invoices, param_name: 'invoice_page' %>
         <%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>
       </div>
     </div>
@@ -25,10 +26,11 @@
           <p class="card-text">You don't have any companies yet! You cannot create invoices until you've added at least one company.</p>
         <% else %>
           <p class="card-text">Click on a company to edit it:</p>
-          <% current_user.companies.each do |company| %>
+          <% @companies.each do |company| %>
             <p><%= link_to "#{company.name}", edit_company_path(company) %></p>
           <% end %>
         <% end %>
+        <%= paginate @companies, param_name: 'company_page' %>
         <%= link_to 'New Company', new_company_path, class: "btn btn-primary" %>
       </div>
     </div>
