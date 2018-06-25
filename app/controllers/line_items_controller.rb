@@ -12,7 +12,7 @@ class LineItemsController < ApplicationController
 
   private
   def line_item_params
-    params.require(:line_item).permit(:invoice_id, :description, :quantity, :price)
+    params.require(:line_item).permit(:invoice_id, :description, :quantity, :price, :notes)
   end
 
 end

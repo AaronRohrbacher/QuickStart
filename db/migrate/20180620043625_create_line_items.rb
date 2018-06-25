@@ -5,6 +5,7 @@ class CreateLineItems < ActiveRecord::Migration[5.2]
       t.string :description
       t.decimal :quantity
       t.decimal :price
+      t.text :notes
     end
   end
 end

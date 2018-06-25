@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
     t.string "description"
     t.decimal "quantity"
     t.decimal "price"
+    t.text "notes"
   end
 
   create_table "users", force: :cascade do |t|

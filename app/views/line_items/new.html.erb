@@ -1,24 +1,49 @@
 <% if @invoice.line_items.any? %>
-  <h3>Line Items for Invoice no. <%= @invoice.id %></h3>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @invoice.line_items.each do |item| %>
-    <p><%= "#{item.description} #{item.price} #{item.quantity} #{item.price * item.quantity}" %></p>
+    <tr>
+      <td><%= item.description %></td>
+      <td><%= number_to_currency(item.price) %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.price * item.quantity) %></td>
+    </tr>
+    <% if item.notes.length > 0 && item.notes != " " %>
+      <tr><td class = "table-warning"><%= simple_format(item.notes) %></td></tr>
+    <% end %>
   <% end %>
 <% end %>
+</tbody>
+</table>
+
 <%= form_for [@invoice, @line_item] do |f| %>
-<div class = 'input-group input-group-sm mb-3'>
-  <div class = 'input-group-prepend input-group-sm'>
-    <span class = 'input-group-text'>Description</span><%= f.text_field :description, class: 'form-control' %>
-  </div>
+  <div class = 'input-group input-group-sm mb-3'>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Description</span><%= f.text_field :description, class: 'form-control' %>
+    </div>
 
-  <div class = 'input-group-prepend input-group-sm'>
-    <span class = 'input-group-text'>Price $</span><%=f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), class: 'form-control' %>
-  </div>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Price $</span><%=f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: :any, class: 'form-control' %>
+    </div>
 
-  <div class = 'input-group-prepend input-group-sm'>
-    <span class = 'input-group-text'>Quantity</span><%= f.number_field :quantity, class: :text_field, step: :any, class: 'form-control' %>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Quantity</span><%= f.number_field :quantity, class: :text_field, step: :any, class: 'form-control' %>
+    </div>
   </div>
-  <%= f.submit "Add Line Item", class: 'btn btn-primary btn-sm' %>
+  <div class = 'input-group input-group-sm mb-3'>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Line Item Notes</div><%= f.text_area :notes, class: 'form-control' %>
+    </div>
+    <%= f.submit "Add Line Item", class: 'btn btn-primary btn-sm' %>
   </div>
 <% end %>
-
+<br>
 <%= link_to "View Invoice Preview", invoice_path(@invoice), class: 'btn btn-primary' %>
