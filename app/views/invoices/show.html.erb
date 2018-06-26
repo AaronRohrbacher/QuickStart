@@ -1,7 +1,78 @@
-<h3>Bill To:</h3>
-<h4><%= @invoice.company.name %></h4>
-<p><%= @invoice.company.address_1 %></p>
-<p><%= @invoice.company.address_2 %></p>
-<p><%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %></p>
-<p><%= @invoice.company.phone_1 %></p>
-<p><%= @invoice.company.phone_2 %></p>
+<h2>Invoice</h2>
+<div class = 'row'>
+  <div class="col-md-4">
+    <p>Invoice Number: <%= @invoice.invoice_number %></p>
+    <p>Date: <%= @invoice.sent_date.strftime("%B %d, %Y") %>
+    <p><strong>Due Date: <%= @invoice.due_date.strftime("%B %d, %Y") %></strong></p>
+  </div>
+</div>
+
+
+<div class = 'row'>
+  <div class = 'col-md-6'>
+    <div class = 'card'>
+      <div class = 'card-header'>
+        From:
+      </div>
+      <div class = 'card-body'>
+        <h4><%= @invoice.user.first_name + ' ' + @invoice.user.last_name %></h4>
+        <p><%= @invoice.user.address_1 %><br>
+           <%= @invoice.user.address_2 %><br>
+           <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %></p>
+        <p><%= number_to_phone(@invoice.user.phone_1, area_code: true) %></p>
+        <p><%= number_to_phone(@invoice.user.phone_2, area_code: true) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class = 'col-md-6'>
+    <div class = 'card'>
+      <div class="card-header">
+        Bill To:
+      </div>
+      <div class = 'card-body'>
+        <h4><%= @invoice.company.name %></h4>
+        <p><%= @invoice.company.address_1 %><br>
+           <%= @invoice.company.address_2 %><br>
+           <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %></p>
+        <p><%= number_to_phone(@invoice.company.phone_1, area_code: true) %></p>
+          <p><%= number_to_phone(@invoice.company.phone_2, area_code: true) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class = "row">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @invoice.line_items.each do |item| %>
+        <tr>
+          <td><%= item.description %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.price * item.quantity) %></td>
+        </tr>
+        <% if item.notes.length > 0 && item.notes != " " %>
+          <tr><td class = "table-warning"><%= simple_format(item.notes) %></td></tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<hr>
+<div class = "row">
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4">
+    <p>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</p>
+    <p><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></p>
+  </div>
+</div>

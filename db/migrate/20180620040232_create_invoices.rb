@@ -4,8 +4,11 @@ class CreateInvoices < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :company_id
       t.string :invoice_number
+      t.date :sent_date
       t.date :due_date
       t.boolean :paid, default: false
+
+      t.timestamps
     end
   end
 end

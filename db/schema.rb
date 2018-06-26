@@ -25,14 +25,19 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
     t.string "zip"
     t.string "phone_1"
     t.string "phone_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "user_id"
     t.integer "company_id"
     t.string "invoice_number"
+    t.date "sent_date"
     t.date "due_date"
     t.boolean "paid", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -41,6 +46,8 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
     t.decimal "quantity"
     t.decimal "price"
     t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

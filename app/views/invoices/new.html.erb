@@ -2,9 +2,11 @@
   <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
   <%= f.label :company_id %>
   <%= f.select :company_id, options, {}, class: 'form-control' %>
+  <%= f.label :invoice_number %>
+  <%= f.text_field :invoice_number, class: 'form-control' %>
+  <%= f.label :sent_date %>
+  <%= f.date_field :sent_date, value: Date.today, class: 'form-control' %>
   <%= f.label :due_date %>
   <%= f.date_field :due_date, class: 'form-control' %>
   <%= f.submit "Begin Invoice", class: 'btn btn-primary' %>
-
-
 <% end %>
