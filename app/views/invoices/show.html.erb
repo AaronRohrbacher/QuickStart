@@ -6,8 +6,6 @@
     <p><strong>Due Date: <%= @invoice.due_date.strftime("%B %d, %Y") %></strong></p>
   </div>
 </div>
-
-
 <div class = 'row'>
   <div class = 'col-md-6'>
     <div class = 'card'>
@@ -24,7 +22,6 @@
       </div>
     </div>
   </div>
-
   <div class = 'col-md-6'>
     <div class = 'card'>
       <div class="card-header">
@@ -72,7 +69,7 @@
   <div class = "col-md-4"></div>
   <div class = "col-md-4"></div>
   <div class = "col-md-4">
-    <p>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</p>
-    <p><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></p>
+    <h4>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h4>
+    <h4><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></h4>
   </div>
 </div>
