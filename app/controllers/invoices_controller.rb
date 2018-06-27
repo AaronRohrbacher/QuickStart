@@ -1,7 +1,15 @@
 class InvoicesController < ApplicationController
   def show
     @invoice = Invoice.find(params[:id])
-  end
+    respond_to do |format|
+       format.html
+       format.pdf do
+         render pdf: "Your_filename",
+         template: "invoices/show.html.erb",
+         layout: 'pdf.html'
+       end
+     end
+   end
 
   def new
     if current_user.companies.length == 0

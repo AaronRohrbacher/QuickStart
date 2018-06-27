@@ -34,9 +34,9 @@ gem 'bootstrap', '~> 4.1.1'
 # pagination
 gem 'kaminari', '~> 1.1'
 
-#PDF support
-gem 'wkhtmltopdf-binary', '~> 0.12.3'
+# PDF support
 gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary', '0.12.3'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
