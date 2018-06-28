@@ -1,21 +1,21 @@
 <h2>Invoice</h2>
-<div class = 'row'>
-  <div class="col-md-4">
+<div class= "row">
+  <div class= "col-md-4">
     <p>Invoice Number: <%= @invoice.invoice_number %></p>
     <p>Date: <%= @invoice.sent_date.strftime("%B %d, %Y") %>
     <p><strong>Due Date: <%= @invoice.due_date.strftime("%B %d, %Y") %></strong></p>
   </div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4"></div>
+  <div class= "col-md-4"></div>
+  <div class= "col-md-4"></div>
 </div>
-<div class = 'row'>
-  <div class = 'col-md-6'>
-    <div class = 'card'>
-      <div class = 'card-header'>
+<div class= "row">
+  <div class= "col-md-6 overrideResponsive">
+    <div class= "card">
+      <div class= "card-header">
         From:
       </div>
-      <div class = 'card-body'>
-        <h4><%= @invoice.user.first_name + ' ' + @invoice.user.last_name %></h4>
+      <div class= "card-body">
+        <h4><%= @invoice.user.first_name + " " + @invoice.user.last_name %></h4>
         <p><%= @invoice.user.address_1 %><br>
            <%= @invoice.user.address_2 %><br>
            <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %></p>
@@ -24,12 +24,12 @@
       </div>
     </div>
   </div>
-  <div class = 'col-md-6'>
-    <div class = 'card'>
-      <div class="card-header">
+  <div class= "col-md-6 overrideResponsive">
+    <div class= "card">
+      <div class= "card-header">
         Bill To:
       </div>
-      <div class = 'card-body'>
+      <div class= "card-body">
         <h4><%= @invoice.company.name %></h4>
         <p><%= @invoice.company.address_1 %><br>
            <%= @invoice.company.address_2 %><br>
@@ -40,15 +40,15 @@
     </div>
   </div>
 </div>
-<hr>
-<div class = "row">
-  <table class="table">
-    <thead class="thead-dark">
+<span class = "gapper"></span>
+<div class= "row">
+  <table class= "table table-sm">
+    <thead class= "thead-dark tableMargin">
       <tr>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Amount</th>
+        <th scope= "col">Description</th>
+        <th scope= "col">Price</th>
+        <th scope= "col">Quantity</th>
+        <th scope= "col">Amount</th>
       </tr>
     </thead>
     <tbody>
@@ -60,17 +60,17 @@
           <td><%= number_to_currency(item.price * item.quantity) %></td>
         </tr>
         <% if item.notes.length > 0 && item.notes != " " %>
-          <tr><td class = "table-warning"><%= simple_format(item.notes) %></td></tr>
+          <tr><td class= "table-warning"><%= simple_format(item.notes) %></td></tr>
         <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
 <hr>
-<div class = "row">
-  <div class = "col-md-4"></div>
-  <div class = "col-md-4"></div>
-  <div class = "col-md-4">
+<div class= "row">
+  <div class= "col-md-4 overrideResponsive"></div>
+  <div class= "col-md-4 overrideResponsive"></div>
+  <div class= "col-md-4 overrideResponsive">
     <h4>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h4>
     <h4><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></h4>
   </div>

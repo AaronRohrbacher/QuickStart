@@ -7,7 +7,7 @@ class InvoicesController < ApplicationController
          render pdf: "Your_filename",
          template: "invoices/show.html.erb",
          layout: 'pdf.html',
-         viewport_size: '2560x1440'
+         viewport_size: '1920x1080'
        end
      end
    end
