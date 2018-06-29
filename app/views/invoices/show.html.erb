@@ -59,7 +59,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @invoice.line_items.all.each do |item| %>
+      <% @invoice.line_items.all.order(:id).each do |item| %>
         <tr>
           <td><%= item.description %></td>
           <td><%= number_to_currency(item.price) %></td>
