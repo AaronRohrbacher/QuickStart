@@ -7,6 +7,7 @@ class LineItemsController < ApplicationController
   def create
     @invoice = Invoice.find(params[:invoice_id])
     @line_item = @invoice.line_items.create!(line_item_params)
+    @invoice.update_invoice_total
     redirect_to new_invoice_line_item_path(@invoice)
   end
 

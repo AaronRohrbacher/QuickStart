@@ -78,6 +78,6 @@
   <div class= "col-md-4 overrideResponsive"></div>
   <div class= "col-md-4 overrideResponsive">
     <h6>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h6>
-    <h6><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></h6>
+    <h6><strong><%= number_to_currency(@invoice.total) %></strong></h6>
   </div>
 </div>
