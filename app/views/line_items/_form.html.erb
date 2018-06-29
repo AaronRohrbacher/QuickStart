@@ -1,0 +1,21 @@
+<%= form_for [@invoice, @line_item] do |f| %>
+  <div class = 'input-group input-group-sm mb-3'>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Description</span><%= f.text_field :description, class: 'form-control' %>
+    </div>
+
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Price $</span><%=f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: :any, class: 'form-control' %>
+    </div>
+
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Quantity</span><%= f.number_field :quantity, class: :text_field, step: :any, class: 'form-control' %>
+    </div>
+  </div>
+  <div class = 'input-group input-group-sm mb-3'>
+    <div class = 'input-group-prepend input-group-sm'>
+      <span class = 'input-group-text'>Line Item Notes</div><%= f.text_area :notes, class: 'form-control' %>
+    </div>
+    <%= f.submit "Submit", class: 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>

@@ -2,3 +2,7 @@
 .overrideResponsive {
   @include float-left;
 }
+
+.hideOnPdf {
+  display:none;
+}

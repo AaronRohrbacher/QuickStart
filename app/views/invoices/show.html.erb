@@ -48,6 +48,7 @@
 </div>
 <span class = "gapper"></span>
 <div class= "row">
+  <span class = "hideOnPdf"><%= link_to 'Add Line Item', new_invoice_line_item_path(@invoice), class: 'btn btn-primary' %></span>
   <table class= "table table-sm">
     <thead class= "thead-dark tableMargin">
       <tr>
@@ -58,12 +59,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @invoice.line_items.each do |item| %>
+      <% @invoice.line_items.all.each do |item| %>
         <tr>
           <td><%= item.description %></td>
           <td><%= number_to_currency(item.price) %></td>
           <td><%= item.quantity %></td>
-          <td><%= number_to_currency(item.price * item.quantity) %></td>
+          <td><%= number_to_currency(item.price * item.quantity) %><span class = "hideOnPdf"><%= link_to ' edit', edit_invoice_line_item_path(@invoice, item) %><%= link_to ' Destroy',  [@invoice, item],  method: :delete, data: { confirm: "Permanently deleting #{item.description}. This can't be undone. Are you sure?" } %></span></td>
         </tr>
         <% if item.notes.length > 0 && item.notes != " " %>
           <tr><td class= "table-warning"><%= simple_format(item.notes) %></td></tr>
