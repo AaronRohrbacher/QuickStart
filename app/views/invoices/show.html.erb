@@ -15,12 +15,15 @@
         From:
       </div>
       <div class= "card-body">
-        <h4><%= @invoice.user.first_name + " " + @invoice.user.last_name %></h4>
-        <p><%= @invoice.user.address_1 %><br>
-           <%= @invoice.user.address_2 %><br>
-           <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %></p>
-        <p><%= number_to_phone(@invoice.user.phone_1, area_code: true) %></p>
-        <p><%= number_to_phone(@invoice.user.phone_2, area_code: true) %></p>
+        <h5><%= @invoice.user.first_name + " " + @invoice.user.last_name %></h5>
+        <p>
+          <%= @invoice.user.address_1 %><br>
+          <% if @invoice.user.address_2.length > 0 %>
+            <%= @invoice.user.address_2 %><br>
+          <% end %>
+          <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %><br>
+          <%= number_to_phone(@invoice.user.phone_1, area_code: true) %>
+        </p>
       </div>
     </div>
   </div>
@@ -30,12 +33,15 @@
         Bill To:
       </div>
       <div class= "card-body">
-        <h4><%= @invoice.company.name %></h4>
-        <p><%= @invoice.company.address_1 %><br>
-           <%= @invoice.company.address_2 %><br>
-           <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %></p>
-        <p><%= number_to_phone(@invoice.company.phone_1, area_code: true) %></p>
-          <p><%= number_to_phone(@invoice.company.phone_2, area_code: true) %></p>
+        <h5><%= @invoice.company.name %></h5>
+        <p>
+          <%= @invoice.company.address_1 %><br>
+          <% if @invoice.company.address_2.length > 0 %>
+          <%= @invoice.company.address_2 %><br>
+          <% end %>
+          <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %><br>
+          <%= number_to_phone(@invoice.company.phone_1, area_code: true) %>
+        </p>
       </div>
     </div>
   </div>
@@ -71,7 +77,7 @@
   <div class= "col-md-4 overrideResponsive"></div>
   <div class= "col-md-4 overrideResponsive"></div>
   <div class= "col-md-4 overrideResponsive">
-    <h4>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h4>
-    <h4><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></h4>
+    <h6>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h6>
+    <h6><strong><%= number_to_currency(@invoice.calculate_invoice_total) %></strong></h6>
   </div>
 </div>

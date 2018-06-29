@@ -7,6 +7,7 @@ class CreateInvoices < ActiveRecord::Migration[5.2]
       t.date :sent_date
       t.date :due_date
       t.boolean :paid, default: false
+      t.decimal :total
 
       t.timestamps
     end
