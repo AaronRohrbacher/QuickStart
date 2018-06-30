@@ -21,7 +21,9 @@
           <% if !@invoice.user.address_2.blank? %>
             <%= @invoice.user.address_2 %><br>
           <% end %>
-          <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %><br>
+          <% if !@invoice.user.city.blank? %>
+            <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %><br>
+          <% end %>
           <%= number_to_phone(@invoice.user.phone_1, area_code: true) %>
         </p>
       </div>
@@ -39,7 +41,9 @@
           <% if !@invoice.company.address_2.blank? %>
             <%= @invoice.company.address_2 %><br>
           <% end %>
-          <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %><br>
+          <% if !@invoice.company.city.blank? %>
+            <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %><br>
+          <% end %>
           <%= number_to_phone(@invoice.company.phone_1, area_code: true) %>
         </p>
       </div>
