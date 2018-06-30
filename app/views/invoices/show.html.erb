@@ -18,7 +18,7 @@
         <h5><%= @invoice.user.first_name + " " + @invoice.user.last_name %></h5>
         <p>
           <%= @invoice.user.address_1 %><br>
-          <% if @invoice.user.address_2.length > 0 %>
+          <% if @invoice.user.address_2 %>
             <%= @invoice.user.address_2 %><br>
           <% end %>
           <%= "#{@invoice.user.city}, #{@invoice.user.state} #{@invoice.user.zip}" %><br>
