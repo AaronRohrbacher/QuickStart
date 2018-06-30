@@ -21,7 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       ## User configuration
       t.boolean :use_business_name, default: true
-      
+
 
       ## Recoverable
       t.string   :reset_password_token
