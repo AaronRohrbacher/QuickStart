@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :phone_2
 
       ## User configuration
-      t.boolean :use_business_name, default: true
+      t.boolean :use_business_name, default: false
 
 
       ## Recoverable

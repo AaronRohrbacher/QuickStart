@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_043625) do
     t.string "zip"
     t.string "phone_1"
     t.string "phone_2"
-    t.boolean "use_business_name", default: true
+    t.boolean "use_business_name", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
