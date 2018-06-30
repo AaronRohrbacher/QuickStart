@@ -1,12 +1,11 @@
 <h2>Invoice</h2>
 <div class= "row">
-  <div class= "col-md-4">
+  <div class= "col-md-6">
     <p>Invoice Number: <%= @invoice.invoice_number %></p>
     <p>Date: <%= @invoice.sent_date.strftime("%B %d, %Y") %>
     <p><strong>Due Date: <%= @invoice.due_date.strftime("%B %d, %Y") %></strong></p>
   </div>
-  <div class= "col-md-4"></div>
-  <div class= "col-md-4"></div>
+  <div class= "col-md-6"></div>
 </div>
 <div class= "row">
   <div class= "col-md-6 overrideResponsive">
