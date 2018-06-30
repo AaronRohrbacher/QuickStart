@@ -37,6 +37,12 @@ class InvoicesController < ApplicationController
     redirect_to invoice_path(@invoice)
   end
 
+  def destroy
+    @invoice = Invoice.find(params[:id])
+    @invoice.destroy
+    redirect_to root_path
+  end
+
   private
   def invoice_params
     params.require(:invoice).permit(:company_id, :user_id, :invoice_number, :sent_date, :due_date, :paid)
