@@ -3,9 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   # Took this out of the next line while I decide if people can sign up:
-  #:registerable
+
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   has_many :invoices
   has_many :companies

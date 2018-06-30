@@ -36,8 +36,8 @@
         <h5><%= @invoice.company.name %></h5>
         <p>
           <%= @invoice.company.address_1 %><br>
-          <% if @invoice.company.address_2.length > 0 %>
-          <%= @invoice.company.address_2 %><br>
+          <% if @invoice.company.address_2 %>
+            <%= @invoice.company.address_2 %><br>
           <% end %>
           <%= "#{@invoice.company.city}, #{@invoice.company.state} #{@invoice.company.zip}" %><br>
           <%= number_to_phone(@invoice.company.phone_1, area_code: true) %>
@@ -66,7 +66,7 @@
           <td><%= item.quantity %></td>
           <td><%= number_to_currency(item.price * item.quantity) %><span class = "hideOnPdf"><%= link_to ' edit', edit_invoice_line_item_path(@invoice, item) %><%= link_to ' Destroy',  [@invoice, item],  method: :delete, data: { confirm: "Permanently deleting #{item.description}. This can't be undone. Are you sure?" } %></span></td>
         </tr>
-        <% if item.notes.length > 0 && item.notes != " " %>
+        <% if item.notes %>
           <tr><td class= "table-warning"><%= simple_format(item.notes) %></td></tr>
         <% end %>
       <% end %>
