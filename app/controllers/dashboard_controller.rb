@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
 
     @unpaid_invoices = current_user.invoices.where(paid: false).order(id: :desc).page(params[:unpaid_invoice_page]).per(5)
 
-    @overdue_invoices = current_user.invoices.where("due_date < ?", Date.today).order(id: :desc).page(params[:overdue_invoice_page]).per(5)
+    @overdue_invoices = current_user.invoices.where("due_date < ? and paid = ?", Date.today, false).order(id: :desc).page(params[:overdue_invoice_page]).per(5)
 
   end
 end

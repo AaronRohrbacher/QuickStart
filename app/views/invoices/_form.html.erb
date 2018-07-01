@@ -8,5 +8,7 @@
   <%= f.date_field :sent_date, value: Date.today, class: 'form-control' %>
   <%= f.label :due_date %>
   <%= f.date_field :due_date, class: 'form-control' %>
+  <%= f.label :paid %>
+  <%= f.check_box :paid, class: 'form-control' %>
   <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
