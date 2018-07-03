@@ -1,0 +1,22 @@
+<% @time_records.each do |record| %>
+  <%= record.date %>
+  <%= record.time %>
+  <%= record.punch_type %>
+  <br>
+<% end %>
+<%= link_to "add to invoice as line item", new_invoice_time_record_path(add: true) %>
+
+
+<%= form_for [@invoice, @time_record] do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <%= f.label :time %>
+  <%= f.time_field :time %>
+  <%= f.label :punch_type %>
+  <%= f.select :punch_type, options_for_select([["Start", "start"], ["End", "end"]]) %>
+  <%= f.label :rate %>
+  <% if !@time_records[0] %>
+    <%=f.number_field :rate, step: :any %>
+  <% end %>
+  <%= f.submit "Submit" %>
+<% end %>
