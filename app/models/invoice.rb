@@ -37,6 +37,6 @@ class Invoice < ApplicationRecord
   end
 
   def add_time_records(time_records)
-    self.line_items.create!(description: "#{time_records[0].date} Hours Worked", price: time_records[0].rate, quantity: calculate_hours_worked(time_records))
+    self.line_items.create!(description: "#{time_records[0].date} Hours Worked", price: time_records[0].rate, quantity: calculate_hours_worked(time_records), notes: '')
   end
 end
