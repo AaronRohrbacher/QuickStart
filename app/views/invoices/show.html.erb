@@ -52,7 +52,9 @@
 <span class = "gapper"></span>
 <div class= "row">
   <span class = "hideOnPdf">
-    <%= link_to 'Add Line Item', new_invoice_line_item_path(@invoice), class: 'btn btn-primary' %> <%= link_to 'Edit Invoice Details', edit_invoice_path(@invoice), class: 'btn btn-primary' %>
+    <%= link_to 'Add Line Item', new_invoice_line_item_path(@invoice), class: 'btn btn-primary' %>
+    <%= link_to 'Track Time', new_invoice_time_record_path(@invoice), class: 'btn btn-primary' %>
+    <%= link_to 'Edit Invoice Details', edit_invoice_path(@invoice), class: 'btn btn-primary' %>
     <%= link_to 'Generate PDF', invoice_path(@invoice, format: :pdf), class: 'btn btn-primary' %>
     <%= link_to 'Delete Invoice', invoice_path(@invoice), class: 'btn btn-danger', method: :delete, data: { confirm: "Permanently deleting. This can't be undone. Are you sure?" } %>
   </span>

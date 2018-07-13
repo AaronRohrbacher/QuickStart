@@ -6,6 +6,7 @@
   <br>
 <% end %>
 <%= link_to "add to invoice as line item", new_invoice_time_record_path(add: true) %>
+<%= link_to "Return to Invoice", invoice_path(@invoice) %>
 
 
 <%= form_for [@invoice, @time_record] do |f| %>
