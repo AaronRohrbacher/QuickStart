@@ -5,20 +5,20 @@
   <%= link_to ' Destroy',  [@invoice, record],  method: :delete %>
   <br>
 <% end %>
-<%= link_to "add to invoice as line item", new_invoice_time_record_path(add: true) %>
-<%= link_to "Return to Invoice", invoice_path(@invoice) %>
+<%= link_to "Add to invoice", new_invoice_time_record_path(add: true), class: 'btn btn-primary' %>
+<%= link_to "Return to Invoice", invoice_path(@invoice), class: 'btn btn-primary' %>
 
 
 <%= form_for [@invoice, @time_record] do |f| %>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
+  <% if !@time_records[0] %>
+    <%= f.label :date %>
+    <%= f.date_field :date, value: Date.today %>
+    <%= f.label :rate %>
+    <%= f.number_field :rate, step: :any %>
+  <% end %>
   <%= f.label :time %>
   <%= f.time_field :time %>
   <%= f.label :punch_type %>
   <%= f.select :punch_type, options_for_select([["Start", "start"], ["End", "end"]]) %>
-  <%= f.label :rate %>
-  <% if !@time_records[0] %>
-    <%=f.number_field :rate, step: :any %>
-  <% end %>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
