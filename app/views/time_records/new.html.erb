@@ -2,6 +2,7 @@
   <%= record.date %>
   <%= record.time %>
   <%= record.punch_type %>
+  <%= link_to ' Destroy',  [@invoice, record],  method: :delete %>
   <br>
 <% end %>
 <%= link_to "add to invoice as line item", new_invoice_time_record_path(add: true) %>

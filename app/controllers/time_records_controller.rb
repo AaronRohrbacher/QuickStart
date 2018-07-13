@@ -5,10 +5,14 @@ class TimeRecordsController < ApplicationController
     @time_record = TimeRecord.new
 
     if params[:add]
-      @invoice.add_time_records(@time_records)
-      @invoice.update_invoice_total
-      @time_records.each do |record|
-        record.added_to_line_items = true
+      if @invoice.validate_time_records(@time_records) === true
+        @invoice.add_time_records(@time_records)
+        @invoice.update_invoice_total
+        @time_records.each do |record|
+          record.update(added_to_line_items: true)
+        end
+      else
+        flash[:alert] = "FUCK YOU"
       end
       redirect_to new_invoice_time_record_path
     end
@@ -17,6 +21,12 @@ class TimeRecordsController < ApplicationController
   def create
     @invoice = Invoice.find(params[:invoice_id])
     @time_record = @invoice.time_records.create!(time_record_params)
+    redirect_to new_invoice_time_record_path
+  end
+
+  def destroy
+    @time_record = TimeRecord.find(params[:id])
+    @time_record.destroy!
     redirect_to new_invoice_time_record_path
   end
 

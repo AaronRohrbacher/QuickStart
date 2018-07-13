@@ -10,6 +10,22 @@ class Invoice < ApplicationRecord
     self.update!(total: sum)
   end
 
+  def validate_time_records(time_records)
+    i = 0
+    validation = false
+    if time_records.length % 2 === 0
+      until i >= time_records.length
+        if time_records[i].punch_type === 'start' && time_records[i+1].punch_type === 'end'
+          validation = true
+        else
+          validation = false
+        end
+        i += 2
+      end
+    end
+    validation
+  end
+
   def calculate_hours_worked(time_records)
     hours_worked = 0
     i = 0
