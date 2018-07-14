@@ -12,7 +12,7 @@ class TimeRecordsController < ApplicationController
           record.update(added_to_line_items: true)
         end
       else
-        flash[:alert] = "FUCK YOU"
+        flash[:alert] = "Invalid time record. Records must be in order of 'start' and 'end.'"
       end
       redirect_to new_invoice_time_record_path
     end
