@@ -1,6 +1,12 @@
 
 <% flash.each do |key, value| %>
+  <% if flash.keys[0] === 'alert' %>
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <% elsif flash.keys[0] === 'success' %>
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  <% else %>
    <div class='alert alert-info alert-dismissible fade show' role='alert'>
+  <% end %>
      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <span aria-hidden="true">&times;</span>
      </button>

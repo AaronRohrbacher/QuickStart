@@ -23,7 +23,13 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = current_user.invoices.create(invoice_params)
-    redirect_to new_invoice_line_item_path(@invoice)
+    @companies = current_user.companies.all
+    if @invoice.save
+      redirect_to invoice_path(@invoice)
+    else
+      flash.now[:alert] = "Form is incomplete"
+      render 'new'
+    end
   end
 
   def edit
