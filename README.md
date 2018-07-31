@@ -1,6 +1,6 @@
-#Welcome to TimeToInvoice!
+# Welcome to TimeToInvoice!
 
-##Installation:
+## Installation:
 
 These instructions assume that you have Ruby 2.4.1 and Rails 5.2.0 installed or ready to go with your preferred Ruby version manager. Feel free to reach out to me via e-mail for further assistance!
 
