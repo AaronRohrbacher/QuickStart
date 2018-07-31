@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
        format.html
        format.pdf do
-         render pdf: "Your_filename",
+         render pdf: @invoice.invoice_number,
          template: "invoices/show.html.erb",
          layout: 'pdf.html',
          viewport_size: '1920x1080'
