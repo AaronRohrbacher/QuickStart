@@ -31,7 +31,14 @@ class Invoice < ApplicationRecord
     hours_worked = 0
     i = 0
     until i >= time_records.length
-      hours_worked += time_records[i+1].time - time_records[i].time
+      if time_records[i].time > time_records[i+1].time
+        first_time_record = time_records[i].time
+        second_time_record = time_records[i+1].time + 1.day
+      else
+        first_time_record = time_records[i].time
+        second_time_record = time_records[i+1].time
+      end
+      hours_worked += second_time_record - first_time_record
       i += 2
     end
     (hours_worked / 60) / 60
