@@ -14,7 +14,7 @@
         From:
       </div>
       <div class= "card-body">
-        <h5><%= @invoice.user.first_name + " " + @invoice.user.last_name %></h5>
+        <h5><%= image_tag("http://aaronrohrbacher.com/assets/logo.png", width: "32px") + @invoice.user.first_name + " " + @invoice.user.last_name %></h5>
         <p>
           <%= @invoice.user.address_1 %><br>
           <% if !@invoice.user.address_2.blank? %>
@@ -91,3 +91,5 @@
     <h6><strong><%= number_to_currency(@invoice.total) %></strong></h6>
   </div>
 </div>
+<a href="https://www.paypal.me/aaronrohrbacher/<%= @invoice.total %>"><h3 class = "btn btn-success">Pay Online Now</h3></a>
+<p>Or address check to above address</p>
