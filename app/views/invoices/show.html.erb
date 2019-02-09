@@ -73,7 +73,7 @@
           <td>
             <%= item.description %>
             <% if !item.notes.blank? %>
-              <br />&nbsp;&nbsp;&nbsp;<%= item.notes %>
+              <br /><p class = "alert-warning" style = "margin: 0px 0px 0px 15px; padding: 0;"><%= item.notes %></p>
             <% end %>
           </td>
           <td><%= number_to_currency(item.price) %></td>
