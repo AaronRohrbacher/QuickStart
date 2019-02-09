@@ -87,11 +87,12 @@
 <hr>
 <div class= "row">
   <div class= "col-md-4 overrideResponsive"></div>
-  <div class= "col-md-4 overrideResponsive"></div>
   <div class= "col-md-4 overrideResponsive">
     <h6>Balance Due <%= @invoice.due_date.strftime("%B %d, %Y") %>:</h6>
     <h6><strong><%= number_to_currency(@invoice.total) %></strong></h6>
   </div>
+  <div class= "col-md-4 overrideResponsive">
+    <a href="https://www.paypal.me/aaronrohrbacher/<%= @invoice.total %>"><h3 class = "btn btn-success">Pay Online Now</h3></a>
+    <p>Or address check to above address</p>
+  </div>
 </div>
-<a href="https://www.paypal.me/aaronrohrbacher/<%= @invoice.total %>"><h3 class = "btn btn-success">Pay Online Now</h3></a>
-<p>Or address check to above address</p>
