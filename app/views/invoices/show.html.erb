@@ -70,14 +70,16 @@
     <tbody>
       <% @invoice.line_items.all.order(:id).each do |item| %>
         <tr>
-          <td><%= item.description %></td>
+          <td>
+            <%= item.description %>
+            <% if !item.notes.blank? %>
+              <br />&nbsp;&nbsp;&nbsp;<%= item.notes %>
+            <% end %>
+          </td>
           <td><%= number_to_currency(item.price) %></td>
           <td><%= item.quantity %></td>
           <td><%= number_to_currency(item.price * item.quantity) %><span class = "hideOnPdf"><%= link_to ' edit', edit_invoice_line_item_path(@invoice, item) %><%= link_to ' Destroy',  [@invoice, item],  method: :delete, data: { confirm: "Permanently deleting #{item.description}. This can't be undone. Are you sure?" } %></span></td>
         </tr>
-        <% if !item.notes.blank? %>
-          <tr><td class= "table-warning"><%= simple_format(item.notes) %></td></tr>
-        <% end %>
       <% end %>
     </tbody>
   </table>
