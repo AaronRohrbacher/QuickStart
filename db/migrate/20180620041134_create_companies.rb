@@ -1,7 +1,6 @@
 class CreateCompanies < ActiveRecord::Migration[5.2]
   def change
     create_table :companies do |t|
-      t.integer :user_id
       t.string :name
       t.string :address_1
       t.string :address_2
@@ -10,7 +9,6 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :zip
       t.string :phone_1
       t.string :phone_2
-
       t.timestamps
     end
   end

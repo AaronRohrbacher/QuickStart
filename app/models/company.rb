@@ -1,4 +1,4 @@
 class Company < ApplicationRecord
   has_many :invoices
-  belongs_to :user
+  has_and_belongs_to_many :users
 end
