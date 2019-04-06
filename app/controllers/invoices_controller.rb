@@ -51,7 +51,7 @@ class InvoicesController < ApplicationController
 
   private
   def invoice_params
-    params.require(:invoice).permit(:company_id, :user_id, :invoice_number, :sent_date, :due_date, :paid)
+    params.require(:invoice).permit(:company_id, :user_id, :invoice_number, :sent_date, :due_date, :paid, :status_id)
   end
 
 end

@@ -77,4 +77,15 @@
       </div>
     </div>
   </div>
+<% else %>
+  <table class = "table">
+    <th>Project Number</th>
+    <th>Status</th>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.invoice_number %></td>
+        <td><%= invoice.status.name %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>

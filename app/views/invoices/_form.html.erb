@@ -1,15 +1,19 @@
 <%= render 'shared/errors', object: @invoice %>
 <%= form_for [@invoice], class: 'form-group' do |f| %>
-  <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
+  <% company_options = options_from_collection_for_select(@companies, 'id', 'name', @invoice.company_id) %>
   <%= f.label :company_id %>
-  <%= f.select :company_id, options, {}, class: 'form-control' %>
+  <%= f.select :company_id, company_options, {}, class: 'form-control' %>
   <%= f.label :invoice_number %>
   <%= f.text_field :invoice_number, class: 'form-control' %>
   <%= f.label :sent_date %>
   <%= f.date_field :sent_date, class: 'form-control' %>
   <%= f.label :due_date %>
   <%= f.date_field :due_date, class: 'form-control' %>
+  <% status_options = options_from_collection_for_select(Status.all, 'id', 'name', @invoice.status_id) %>
+  <%= f.label :status_id %>
+  <%= f.select :status_id, status_options, {}, class: 'form-control' %>
   <%= f.label :paid %>
   <%= f.check_box :paid, class: 'form-control' %>
   <%= f.submit "Submit", class: 'btn btn-primary' %>
+
 <% end %>

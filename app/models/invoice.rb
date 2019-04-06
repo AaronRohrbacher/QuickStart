@@ -3,6 +3,7 @@ class Invoice < ApplicationRecord
   belongs_to :user
   has_many :line_items
   has_many :time_records
+  belongs_to :status
   validates :due_date, :invoice_number, presence: true
 
   def update_invoice_total
