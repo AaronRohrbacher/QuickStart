@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :is_admin
   def new
     @company = current_user.companies.new
   end

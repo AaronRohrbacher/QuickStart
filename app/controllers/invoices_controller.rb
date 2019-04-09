@@ -1,4 +1,6 @@
 class InvoicesController < ApplicationController
+  before_action :is_admin, except: :show
+  before_action :showable, only: :show
   def show
     @invoice = Invoice.find(params[:id])
     respond_to do |format|
@@ -51,7 +53,13 @@ class InvoicesController < ApplicationController
 
   private
   def invoice_params
-    params.require(:invoice).permit(:company_id, :user_id, :invoice_number, :sent_date, :due_date, :paid, :status_id)
+    params.require(:invoice).permit(:company_id, :user_id, :invoice_number, :sent_date, :due_date, :paid, :status_id, :name)
   end
 
+  def showable
+    invoice = Invoice.find(params[:id])
+    return if invoice.showable?
+    flash[:alert] = "Naughty, naughty"
+    redirect_to root_path
+  end
 end

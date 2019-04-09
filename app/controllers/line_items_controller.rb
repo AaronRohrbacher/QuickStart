@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  before_action :is_admin
   def new
     @invoice = Invoice.find(params[:invoice_id])
     @line_item = LineItem.new

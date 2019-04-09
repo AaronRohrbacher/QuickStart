@@ -80,11 +80,31 @@
 <% else %>
   <table class = "table">
     <th>Project Number</th>
+    <th>Project Name</th>
     <th>Status</th>
+    <% if Dashboard.any_payable?(current_user.companies[0]) %>
+      <th>Total Due</th>
+      <th>Pay Invoice</th>
+    <% end %>
+    <% if Dashboard.any_showable?(current_user.companies[0]) %>
+      <th>View Project</th>
+    <% end %>
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= invoice.invoice_number %></td>
-        <td><%= invoice.status.name %></td>
+        <td><%= invoice.name %></td>
+        <td><p class="invoiceStatus" style="color: <%= invoice.status.color %>"><%= invoice.status.name %></p></td>
+        <% if invoice.payable? %>
+          <td><%= number_to_currency(invoice.total) %></td>
+          <td><a href="https://www.paypal.me/aaronrohrbacher/<%= invoice.total %>"><h3 class = "btn btn-success">Pay Online Now</h3></a></td>
+        <% elsif Dashboard.any_payable?(current_user.companies[0]) %>
+          <td></td><td></td>
+        <% end %>
+        <% if invoice.showable? %>
+          <td><%= link_to "View Project", invoice_path(invoice), class: "btn btn-primary" %></td>
+        <% elsif Dashboard.any_showable?(current_user.companies[0]) %>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

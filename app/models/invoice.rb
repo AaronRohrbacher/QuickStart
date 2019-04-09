@@ -48,4 +48,21 @@ class Invoice < ApplicationRecord
   def add_time_records(time_records)
     self.line_items.create!(description: "#{time_records[0].date} Hours Worked", price: time_records[0].rate, quantity: calculate_hours_worked(time_records), notes: '')
   end
+
+  def showable?
+    return true if ["Awaiting Client Contract Approval", 
+                    "Awaiting Contract Payment", 
+                    "Contract Approved", 
+                    "Awaiting Client Project Approval", 
+                    "Awaiting Payment", 
+                    "Complete"]
+                    .include?(self.status.name)
+    false
+  end
+
+  def payable?
+    return true if ["Awaiting Contract Payment",
+                    "Awaiting Payment"]
+                    .include?(self.status.name)
+  end
 end

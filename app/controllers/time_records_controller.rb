@@ -1,4 +1,5 @@
 class TimeRecordsController < ApplicationController
+  before_action :is_admin
   def new
     @invoice = Invoice.find(params[:invoice_id])
     @time_records = @invoice.time_records.where(added_to_line_items: false)
